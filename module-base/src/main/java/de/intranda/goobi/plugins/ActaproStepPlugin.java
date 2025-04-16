@@ -25,8 +25,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.configuration.SubnodeConfiguration;
+import org.apache.commons.configuration.XMLConfiguration;
+import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
+import org.apache.commons.configuration.tree.xpath.XPathExpressionEngine;
 import org.apache.commons.lang3.StringUtils;
 import org.goobi.beans.Process;
 import org.goobi.beans.Processproperty;
@@ -40,6 +44,7 @@ import org.goobi.production.enums.StepReturnValue;
 import org.goobi.production.plugin.interfaces.IStepPluginVersion2;
 
 import de.sub.goobi.config.ConfigPlugins;
+import de.sub.goobi.config.ConfigurationHelper;
 import de.sub.goobi.helper.Helper;
 import de.sub.goobi.helper.VariableReplacer;
 import de.sub.goobi.helper.exceptions.SwapException;
@@ -94,12 +99,20 @@ public class ActaproStepPlugin implements IStepPluginVersion2 {
         SubnodeConfiguration config = ConfigPlugins.getProjectAndStepConfig(title, step);
 
         actaProIdFieldName = config.getString("actaProIdFieldName", "RecordID");
-
-        authServiceUrl = config.getString("/authentication/authServiceUrl");
-        authServiceHeader = config.getString("/authentication/authServiceHeader");
-        authServiceUsername = config.getString("/authentication/authServiceUsername");
-        authServicePassword = config.getString("/authentication/authServicePassword");
-        connectorUrl = config.getString("/connectorUrl");
+        try {
+            XMLConfiguration actaProConfig = new XMLConfiguration(
+                    ConfigurationHelper.getInstance().getConfigurationFolder() + "plugin_intranda_administration_actapro_sync.xml");
+            actaProConfig.setListDelimiter('&');
+            actaProConfig.setReloadingStrategy(new FileChangedReloadingStrategy());
+            actaProConfig.setExpressionEngine(new XPathExpressionEngine());
+            authServiceUrl = actaProConfig.getString("/authentication/authServiceUrl");
+            authServiceHeader = actaProConfig.getString("/authentication/authServiceHeader");
+            authServiceUsername = actaProConfig.getString("/authentication/authServiceUsername");
+            authServicePassword = actaProConfig.getString("/authentication/authServicePassword");
+            connectorUrl = actaProConfig.getString("/connectorUrl");
+        } catch (ConfigurationException e) {
+            log.error(e);
+        }
 
         requiredFields = new ArrayList<>();
         List<HierarchicalConfiguration> sub = config.configurationsAt("requiredField");

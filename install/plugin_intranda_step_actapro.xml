@@ -12,16 +12,6 @@
         <project>*</project>
         <step>*</step>
 
-        <authentication>
-            <authServiceUrl>http://localhost:8080/AuthService-ACTApro/oauth2/token</authServiceUrl>
-            <authServiceHeader>Authorization: Basic ABCDEFGEHIJKLMNOPQRSXYZ</authServiceHeader>
-            <authServiceUsername>user</authServiceUsername>
-            <authServicePassword>password</authServicePassword>
-        </authentication>   
-    
-        <connectorUrl>http://localhost:8080/ACTApro-connector/</connectorUrl>
-
-
         <actaProIdFieldName>RecordID</actaProIdFieldName>
 
         <!-- required metadata/property that must exist in order to proceed -->
