@@ -5,17 +5,54 @@
           2.) step name matches and project is *
           3.) project name matches and step name is *
           4.) project name and step name are *
-	-->
-    
+    -->
+
     <config>
         <!-- which projects to use for (can be more then one, otherwise use *) -->
         <project>*</project>
         <step>*</step>
+
+        <actaProIdFieldName>RecordID</actaProIdFieldName>
+
+        <!-- required metadata/property that must exist in order to proceed -->
+        <requiredField type="metadata">CatalogIDDigital</requiredField>
+        <requiredField type="property">DocType</requiredField>
+
         
-        <!-- sample parameter -->
-        <value>test</value>
-        <!-- display button to finish the task directly from within the entered plugin -->
-        <allowTaskFinishButtons>true</allowTaskFinishButtons>
+        <!-- define which field to update/add-->
+        <!-- type defines the type field in the actapro document -->
+        <!-- if it is a sub field of a superordinated field, in can be configured in groupType -->
+        <!-- value: the value to write. can be a static text or anything from the VariableReplacer -->
+        
+        <!--  
+        two types of fields can be generated. You can generate something like this:  
+         "fields": [
+              {
+                "type": "some type",
+                "value": "http://example.com/viewer/piresolver?id=12345"
+               }
+               ]
+       -->
+       <field type="some type" value="http://example.com/viewer/piresolver?id=$(meta.CatalogIDDigital)" />
+       
+       <!-- or create a structure like this: -->
+        <!--
+         "fields": [
+               {
+                    "type": "main type",
+                    "fields": [
+                      {
+                        "type": "sub type",
+                        "value": "http://example.com/viewer/piresolver?id=12345"
+                      }
+                    ]
+                  }
+               ]       
+       -->           
+        <field type="sub type" groupType="main type" value="http://example.com/viewer/piresolver?id=$(meta.CatalogIDDigital)" />
+
+
+
     </config>
 
 </config_plugin>
