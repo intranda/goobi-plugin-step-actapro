@@ -32,8 +32,8 @@ import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 import org.apache.commons.configuration.tree.xpath.XPathExpressionEngine;
 import org.apache.commons.lang3.StringUtils;
+import org.goobi.beans.GoobiProperty;
 import org.goobi.beans.Process;
-import org.goobi.beans.Processproperty;
 import org.goobi.beans.Step;
 import org.goobi.production.cli.helper.StringPair;
 import org.goobi.production.enums.LogType;
@@ -204,8 +204,8 @@ public class ActaproStepPlugin implements IStepPluginVersion2 {
             for (StringPair field : requiredFields) {
                 boolean fieldExists = false;
                 if ("property".equalsIgnoreCase(field.getOne())) {
-                    for (Processproperty prop : process.getEigenschaften()) {
-                        if (prop.getTitel().equals(field.getTwo())) {
+                    for (GoobiProperty prop : process.getProperties()) {
+                        if (prop.getPropertyName().equals(field.getTwo())) {
                             fieldExists = true;
                         }
                     }
