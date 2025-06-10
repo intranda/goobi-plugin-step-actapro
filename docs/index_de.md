@@ -1,13 +1,13 @@
 ---
-title: Schritteplugin zum Anreichern von ACTApro Dokumenten
+title: Anreichern von ACTApro Dokumenten
 identifier: intranda_step_actapro
-description: Schritteplugin zum Anreichern von ACTApro Dokumenten mit zusätzlichen Metadaten
-published: false
+description: Step-Plugin zum Anreichern von ACTApro-Dokumenten mit zusätzlichen Metadaten
+published: true
 ---
 
 ## Einführung
 
-Dieses Plugin wird verwendet, um Informationen an ACTApro zu senden. Beliebige Daten können zu einem existierenden Knoten hinzugefügt werden.
+Dieses Plugin wird verwendet, um Informationen an ACTApro zu senden. Beliebige Daten können hierbei zu einem existierenden Knoten innerhalb von ACTApro hinzugefügt werden.
 
 
 ## Installation
@@ -38,7 +38,7 @@ Anschließend werden die konfigurierten Pflichtfelder geprüft. Hier kann validi
 Wenn die Vorbedingungen erfüllt wurden, wird der ACTApro-Datensatz via REST API geholt und um die konfigurierten Daten angereichert.
 Das so angereicherte Dokument wird als letztes wieder an die ACTApro API geschickt.
 
-Fehlt die ACTApro ID, die konfigurierten Pflichtfelder oder wird der ACTApro-Datensatz nicht gefunden, schlägt das Plugin mit einer Fehlermeldung im Vorgangslog fehl.
+Fehlt die ACTApro ID, die konfigurierten Pflichtfelder oder wird der ACTApro-Datensatz nicht gefunden, schlägt das Plugin mit einer Fehlermeldung im Journal fehl.
 
 
 ## Konfiguration
@@ -50,6 +50,6 @@ Die Konfiguration des Plugins erfolgt in der Datei `plugin_intranda_step_actapro
 
 Parameter               | Erläuterung
 ------------------------|------------------------------------
-`actaProIdFieldName`  | Enthält den Namen des Metadatums, in dem die ACTApro ID steht
-`requiredField`       | Enthält eine Liste aller Pflichtfelder. Im Attribut `type` kann angegeben werden, ob es sich um eine Eigenschaft (`property`) oder um ein Metadatum (`metadata`) handelt. 
-`field`                | Enthält eine Felddefinition, die im ACTApro Dokument überschrieben oder hinzugefügt werden soll. Das Attribut `value` enthält den zu schreibenden Wert. Hierbei kann auf den VariableReplacer zugegriffen werden. In `type` steht der Feldname. Falls es sich um ein untergeordnetes Feld eines anderen Feldes handelt, kann das Hauptfeld in `groupType` angegeben werden. 
+`actaProIdFieldName`    | Enthält den Namen des Metadatums, in dem die ACTApro ID steht
+`requiredField`         | Enthält eine Liste aller Pflichtfelder. Im Attribut `type` kann angegeben werden, ob es sich um eine Eigenschaft (`property`) oder um ein Metadatum (`metadata`) handelt. 
+`field`                 | Enthält eine Felddefinition, die im ACTApro Dokument überschrieben oder hinzugefügt werden soll. Das Attribut `value` enthält den zu schreibenden Wert. Hierbei kann auf den VariableReplacer zugegriffen werden. In `type` steht der Feldname. Falls es sich um ein untergeordnetes Feld eines anderen Feldes handelt, kann das Hauptfeld in `groupType` angegeben werden. 
