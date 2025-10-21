@@ -3,6 +3,10 @@ title: Anreichern von ACTApro Dokumenten
 identifier: intranda_step_actapro
 description: Step-Plugin zum Anreichern von ACTApro-Dokumenten mit zusätzlichen Metadaten
 published: true
+keywords:
+    - Goobi workflow
+    - Plugin
+    - Step Plugin
 ---
 
 ## Einführung
