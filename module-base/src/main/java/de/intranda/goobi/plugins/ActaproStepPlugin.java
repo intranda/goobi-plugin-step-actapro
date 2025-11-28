@@ -240,6 +240,8 @@ public class ActaproStepPlugin implements IStepPluginVersion2 {
                 Helper.addMessageToProcessJournal(process.getId(), LogType.ERROR, "ACTApro update failed, no ACTApro document found.");
                 return PluginReturnValue.ERROR;
             }
+        } catch (IOException e) {
+            log.error(e);
         }
 
         // add/update fields within document
