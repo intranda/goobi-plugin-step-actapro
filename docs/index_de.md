@@ -22,7 +22,7 @@ Um das Plugin nutzen zu können, müssen folgende Dateien installiert werden:
 /opt/digiverso/goobi/config/plugin_intranda_step_actapro.xml
 ```
 
-Außerdem muss das `intranda_administration_actapro_sync` Administraion Plugin installiert und konfiguriert werden.
+Außerdem muss das `intranda_administration_actapro_sync` Administration Plugin installiert und konfiguriert werden.
 
 Nach der Installation des Plugins kann dieses innerhalb des Workflows für die jeweiligen Arbeitsschritte ausgewählt und somit automatisch ausgeführt werden. Ein Workflow könnte dabei beispielhaft wie folgt aussehen:
 
